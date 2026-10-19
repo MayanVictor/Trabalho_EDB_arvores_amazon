@@ -94,7 +94,9 @@ AVL::No* AVL::removerNo(No* no, int chave, bool& removeu) {
     if (no == nullptr) return nullptr;
     if (chave < no->chave) {
         no->esquerda = removerNo(no->esquerda, chave, removeu);
-        } else {
+    } else if (chave > no->chave) {
+        no->direita = removerNo(no->direita, chave, removeu);
+    } else {
         removeu = true;
         if (no->esquerda == nullptr || no->direita == nullptr) {
             No* filho = no->esquerda != nullptr ? no->esquerda : no->direita;
